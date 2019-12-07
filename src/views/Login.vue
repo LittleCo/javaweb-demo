@@ -3,15 +3,15 @@
     <section class="login-box">
       <h2 class="login-header">学生交流平台</h2>
       <p class="project-details">课表查询，作业通知，文档下载，发布活动等功能等你体验</p>
-      <el-input placeholder="输入学号"></el-input>
-      <el-input placeholder="输入密码"></el-input>
+      <el-input placeholder="输入学号" v-model="username"></el-input>
+      <el-input placeholder="输入密码" v-model="password" type="password"></el-input>
       <div class="login-option">
         <el-checkbox v-model="checked">记住密码</el-checkbox>
         <a href="#">忘记密码？</a>
       </div>
       <div class="login-event">
-        <el-button type="info" @click="loginIn">登录</el-button>
-        <el-button>注册</el-button>
+        <el-button type="info" @click.stop="loginIn">登录</el-button>
+        <el-button @click.stop="handleRegister">注册</el-button>
       </div>
     </section>
     <section class="menu-option">
@@ -27,6 +27,7 @@
 </template>
 
 <script>
+import { login, register } from "../api/users";
 export default {
   data() {
     return {
@@ -49,7 +50,41 @@ export default {
       });
     },
     loginIn() {
-      this.$router.push("/home");
+      login({
+        u_id: this.username,
+        u_password: this.password
+      })
+        .then(data => {
+          if (data.state) {
+            localStorage.setItem("username", this.username);
+            this.handleNotify(`${data.message}`, "success");
+            this.$router.push("/home");
+          } else {
+            this.handleNotify(`${data.message}`, "error");
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          this.handleNotify("登录时出错", "error");
+        });
+    },
+    handleRegister() {
+      register({
+        u_id: this.username,
+        u_password: this.password,
+        type: "graduate"
+      })
+        .then(res => {
+          if (res.state) {
+            this.handleNotify(`${res.message}`, "success");
+          } else {
+            this.handleNotify(`该用户已注册`, "error");
+          }
+        })
+        .catch(err => {
+          console.log(err);
+          this.handleNotify(`服务器出错`, "error");
+        });
     }
   }
 };
