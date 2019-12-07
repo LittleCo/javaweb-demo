@@ -21,7 +21,7 @@
         <span class="user-name">李通</span>
       </li>
       <li class="nav-item">
-        <a href="#">退出登录</a>
+        <a @click="loginOut" href="#">退出登录</a>
       </li>
     </ul>
   </el-header>
@@ -36,11 +36,11 @@ export default {
         { href: "/home", title: "今日课程" },
         { href: "/task", title: "待交作业" },
         { href: "/exam", title: "考试计划" },
-        { href: "#", title: "发布活动" },
-        { href: "#", title: "通知公告" },
-        { href: "#", title: "文档下载" },
-        { href: "#", title: "下课聊聊" },
-        { href: "#", title: "个人信息" }
+        { href: "/event", title: "发布活动" },
+        { href: "/notice", title: "通知公告" },
+        { href: "/document", title: "文档下载" },
+        { href: "/chat", title: "下课聊聊" },
+        { href: "/profile", title: "个人信息" }
       ],
       active: 0
     };
@@ -53,6 +53,9 @@ export default {
     },
     handleClickIndex(index) {
       this.active = index;
+    },
+    loginOut() {
+      this.$router.replace("/");
     }
   }
 };

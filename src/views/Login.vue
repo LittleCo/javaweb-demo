@@ -114,7 +114,7 @@ export default {
 }
 .menu-option {
   width: 60%;
-  background: url("./../assets/images/login_3.jpg");
+  background: url("./../assets/images/login_7.jpg");
   background-size: cover;
 }
 .nav-list {
