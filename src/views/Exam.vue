@@ -36,6 +36,18 @@ export default {
           title: "软件工程",
           time: "2019-12-17 08:00 - 9:40",
           spot: "计通楼 510"
+        },
+        {
+          active: true,
+          title: "微机原理与接口技术",
+          time: "2019-12-19 16:00 - 17:40",
+          spot: "计通楼 510"
+        },
+        {
+          active: true,
+          title: "计算机操作系统",
+          time: "2019-12-24 16:00 - 17:40",
+          spot: "公共楼 309"
         }
       ]
     };
@@ -75,5 +87,6 @@ export default {
 }
 .exam-cards {
   display: flex;
+  flex-wrap: wrap;
 }
 </style>

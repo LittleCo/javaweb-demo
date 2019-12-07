@@ -62,7 +62,20 @@ export default {
 
 <style lang="scss" scoped>
 .exam-cart-container {
-  width: 50%;
+  width: 40%;
   margin-right: 20px;
+  margin-bottom: 20px;
+}
+.exam-info {
+  display: flex;
+  margin-bottom: 15px;
+  .time {
+    font-size: 16px;
+    padding: 5px;
+    padding-right: 10px;
+  }
+  .spot {
+    padding: 5px;
+  }
 }
 </style>
