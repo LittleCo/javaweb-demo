@@ -10,10 +10,8 @@ Vue.use(elementUI)
 Vue.config.productionTip = false
 
 
-let root = document.createElement('div')
-  document.body.appendChild(root)
 new Vue({
   store,
   router,
   render: h => h(App),
-}).$mount(root)
+}).$mount('#app')

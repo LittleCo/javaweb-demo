@@ -15,7 +15,8 @@ const Profile = () => import('./views/Profile.vue')
 
 
 const router = new Router({
-  mode: 'history',
+  // mode: 'history',
+  base: '/',
   routes: [{
     path: '/',
     name: 'login',

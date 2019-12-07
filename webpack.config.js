@@ -1,11 +1,3 @@
-/*
- * @Description: In User Settings Edit
- * @Author: your name
- * @Date: 2019-08-24 16:48:10
- * @LastEditTime: 2019-08-25 16:19:23
- * @LastEditors: Please set LastEditors
- */
-
 const path = require('path')
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
@@ -23,7 +15,7 @@ module.exports = ({ mode = 'production', presets = [] }) => {
       entry: path.resolve(__dirname, './src/main.js'),
       output: {
         filename: "bundle.js",
-        path: path.resolve(__dirname, '../mtms-node/dist')
+        path: path.resolve(__dirname, './dist')
       },
       devServer: {
         // config for vue history mode router
@@ -31,17 +23,6 @@ module.exports = ({ mode = 'production', presets = [] }) => {
       },  
       module: {
         rules: [
-          // {
-          //   test:  /\.(ttf|eot|woff|woff2)$/,
-          //   use: [
-          //     {
-          //       loader: "file-loader",
-          //       options: {
-          //         name: "[name].[ext]"
-          //       }
-          //     }
-          //   ]
-          // },
           {
             test: /\.(pne?g|jpg|gif|svg|ttf|eot|woff|woff2)$/,
             use: ['url-loader']
@@ -54,22 +35,12 @@ module.exports = ({ mode = 'production', presets = [] }) => {
             test: /\.s?css$/,
             use: ['style-loader','css-loader','sass-loader']
           },
-          // {
-          //   test: /\.js$/,
-          //   use: {
-          //     loader: 'babel-loader',
-          //     options: {
-          //       presets: ["@babel/preset-env"]
-          //     },
-          //   },
-          //   exclude: '/node_modules/'
-          // }
         ]
       }, 
       plugins: [
         new VueLoaderPlugin(),
         new HtmlWebpackPlugin({
-          filename: './index.html',
+          filename: 'index.html',
           template: './src/index.html'
         }), 
         new webpack.ProgressPlugin()
