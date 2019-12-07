@@ -4,7 +4,9 @@
     <section class="content">
       <section class="tips">
         <h1 class="weather">
-          <span>25℃</span> 株洲 , 晴
+          <span class="temperature">{{this.weatherInfo.temperature}}</span>
+          <span>{{this.weatherInfo.city}}</span>
+          <span>{{this.weatherInfo.weather}}</span>
         </h1>
         <h1 class="date">{{date}} {{weekday}}</h1>
         <p class="tips-content">今天要上的课有: 微机原理与接口, 要交: 微机实验报告</p>
@@ -28,6 +30,7 @@
 
 <script>
 import AppHeader from "../components/AppHeader.vue";
+import { get } from "../api/http";
 export default {
   data() {
     return {
@@ -85,11 +88,20 @@ export default {
       ],
       date: "12月6日",
       week: "第 15 周",
-      weekday: "周一"
+      weekday: "周一",
+      weatherInfo: {
+        temperature: "15 - 2℃",
+        weather: "晴",
+        city: "株洲市",
+        desc: ""
+      }
     };
   },
   components: {
     AppHeader
+  },
+  created() {
+    this.getWeather();
   },
   methods: {
     tableRowClassName({ row, rowIndex }) {
@@ -99,6 +111,17 @@ export default {
         return "success-row";
       }
       return "";
+    },
+    getWeather() {
+      get("http://api.jirengu.com/getWeather.php?city=株洲市").then(res => {
+        const dates = res.date.split("-");
+        this.date = `${dates[1]}月${dates[2]}日`;
+        this.weatherInfo = res.results[0].weather_data[1];
+        console.log(this.weatherInfo);
+        this.weekday = this.weatherInfo.date;
+        this.weatherInfo.desc = res.results[0].index;
+        console.log(res);
+      });
     }
   }
 };
@@ -122,7 +145,7 @@ export default {
   margin-left: 100px;
   .weather {
     text-align: left;
-    span {
+    .temperature {
       font-size: 70px;
       color: rgb(181, 181, 181);
       padding-right: 20px;

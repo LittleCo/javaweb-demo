@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://192.168.199.244/'
 axios.defaults.timeout = 10000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencodedcharset=UTF-8'
 
@@ -8,7 +7,7 @@ axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded
 /**
  * @description: GET 方法 对应 GET 请求
  * @param {String} url [请求的url]
- * @return: {Object} [response]
+ * @return: {Object} [response] 
  */
 export function get(url, params) {
   return new Promise((resolve, reject) => {

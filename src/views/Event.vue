@@ -26,6 +26,9 @@
           <span>活动内容：</span>
           <el-input type="textarea" :rows="5"></el-input>
         </div>
+        <div class="operator">
+          <el-button type="primary">发布活动</el-button>
+        </div>
       </section>
     </section>
   </section>
@@ -93,6 +96,13 @@ export default {
   .people {
     .el-input {
       width: 50%;
+    }
+  }
+  .operator {
+    margin-top: 20px;
+    .el-button {
+      width: 160px;
+      margin: 0 auto;
     }
   }
   div span {
